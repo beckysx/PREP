@@ -29,12 +29,12 @@
 
     var animal=["dog","cat","dragon","lion","tiger"];
     d3.select('body').append('ul').selectAll('li')
-    .data(animal)
-    .enter()
-    .append('li')
-    .text(function(d){
-      return d
-    });
+      .data(animal)
+      .enter()
+      .append('li')
+      .text(function(d){
+        return d
+      });
     d3.select('body').append('br');
     d3.select('body').append('br');
 
