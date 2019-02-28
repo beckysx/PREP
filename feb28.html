@@ -12,14 +12,22 @@
 </head>
 <body>
   <script type="text/javascript">
-    var animal=["cat","dog","snake","spider","elephent","duck"]
-    d3.select("body").select("ol").selectAll("li")
+
+    var animal=["dog","cat","dragon","lion","tiger"];
+    d3.select('body').append('ul').selectAll('li')
     .data(animal)
     .enter()
-    .append("li")
+    .append('li')
     .text(function(d){
-      return animal[d]
-    })
+      return d
+    });
+
+    d3.select('body').append('h2').text("Extra work");
+    var dataset
+    d3.csv("flavor_rank.csv").then(function(ice_cream){
+      dataset=ice_cream;
+      console.log(ice_cream)
+    });
   </script>
 </body>
 </html>
