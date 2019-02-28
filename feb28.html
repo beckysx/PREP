@@ -1,5 +1,25 @@
-<!--using d3 generate list -->
+<!--using d3 generate list
+
+<script src="https://d3js.org/d3.v5.min.js"></script>
+
+-->
 
 
 <html>
+<head>
+  <script src="https://d3js.org/d3.v5.min.js"></script>
+  <title>d3 generate list</title>
+</head>
+<body>
+  <script type="text/javascript">
+    var animal=["cat","dog","snake","spider","elephent","duck"]
+    d3.select("body").select("ol").selectAll("li")
+    .data(animal)
+    .enter()
+    .append("li")
+    .text(function(d){
+      return animal[d]
+    })
+  </script>
+</body>
 </html>
