@@ -9,6 +9,19 @@
 <head>
   <script src="https://d3js.org/d3.v5.min.js"></script>
   <title>d3 generate list</title>
+  <style >
+  td{
+    height: 40px;
+    width: 200px;
+  }
+  p{
+    color: red;
+  }
+  table{
+    margin-left: 200px;
+  }
+
+  </style>
 </head>
 <body>
   <script type="text/javascript">
@@ -21,13 +34,31 @@
     .text(function(d){
       return d
     });
+    d3.select('body').append('br');
+    d3.select('body').append('br');
+
+
 
     d3.select('body').append('h2').text("Extra work");
-    var dataset
-    d3.csv("flavor_rank.csv").then(function(ice_cream){
-      dataset=ice_cream;
-      console.log(ice_cream)
-    });
+    d3.select('body').append('h3').text("Explain");
+    d3.select('body').append('h4').text("Using csv file is different in d3 v5");
+    d3.select('body').append('h4').text("Here is the code in book (d3 v4)");
+    d3.select('body').append('p').text("d3 . csv ('fileSource',function(d){})");
+    d3.select('body').append('h4').text("Here is the code for d3 v5");
+    d3.select('body').append('p').text("d3 . csv ('fileSource').then(function(d){})");
+    d3.select('body').append('br');
+    d3.select('body').append('br');
+
+
+    d3.select('body').append('h3').text("The following table is created by a csv file and a 'for' function");
+    d3.select('body').append('table')
+    d3.csv("https://beckysx.github.io/PREP/flavor_rank.csv").then(function(ice_cream){
+      for(var i=0;i<ice_cream.length;i++){
+        var a=d3.select('table').append('tr');
+        a.append('td').text(ice_cream[i].flavor);
+        a.append('td').text(ice_cream[i].rank);
+    }});
   </script>
+
 </body>
 </html>
