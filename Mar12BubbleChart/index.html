@@ -2,6 +2,9 @@
 <head>
 <style>
 @import url('https://fonts.googleapis.com/css?family=Montserrat|Raleway');
+body{
+  background-color: #CFD6CD
+}
   button{
     width: 200px;
     height: 30px;
@@ -37,6 +40,12 @@
   span{
     background-color: #B4C58B;
   }
+  .description,.try{
+    background-color: #DFE3DE;
+    padding: 20px;
+    border-radius: 40px;
+    margin-bottom: 40px;
+  }
   /*font-family: 'Raleway', sans-serif;
 /*font-family: 'Montserrat', sans-serif;*/
 </style>
@@ -45,7 +54,7 @@
   <div class="body">
     <h1>Seeking Interaction</h1>
     <a href="https://informationisbeautiful.net/visualizations/worlds-biggest-data-breaches-hacks/"><button type="button" name="button">Go to the Website</button></a>
-    <div>
+    <div class="description">
       <h2>Interaction description</h2>
       <ul>
         <li>This visualization is a bubble chart collecting data of "World's Biggest Data Breaches & Hacks" from 2008 to 2019</li>
@@ -53,10 +62,18 @@
         <li>Bubbles have <span>different radius</span> according to how many people the affair affected</li>
         <li>Bubbles <span>can be colored</span>by specific filters.</li>
         <li>When mouse hover on specific bubble, the bubble will expand and you can <span>see a breif introduction</span>. If you want to see more, click on it and it will lead you to a newspaper website.</li>
-
       </ul>
-
-
+    </div>
+    <div class="try">
+      <h2>Implement it in D3</h2>
+      <ul>
+        <li>I definitely will use <span>Force Layout without edges</span> </li>
+        <li>Put each affair in dataset array as an object, set attribute including <span> Year,Impact,dataSensitivity,Genre </span> </li>
+        <li>Events with same year will always floating together in a certain range using the <span>.force("link")</span> and <span>force.on("tick")</span> </li>
+        <li>Set <span>.force("change")</span> in forceSimulation function to make sure bubbles won't overlap</li>
+        <li>Give each botton on the screen event<span> "on('click')"</span>  and <span>listener</span> respectively. When click on specific filter, the fill attribute for different circle will change</li>
+        <li>Give each 'g' event<span> "on('mouseover')"</span> and listener. When the mouse hover on one bubble, the radius will change, and text will show up</li>
+      </ul>
     </div>
 
   </div>
