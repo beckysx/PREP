@@ -1,8 +1,29 @@
 <html>
 <head>
+  <style>
+
+  #tooltip {
+				position: absolute;
+				width: 70px;
+				height: auto;
+				padding: 10px;
+				background-color: white;
+				border-radius: 10px;
+				box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+				pointer-events: none;
+        font-size: 15px;
+        line-height: 10px;
+			}
+
+			#tooltip.hidden {
+				display: none;
+			}
+
+  </style>
   <script src="https://d3js.org/d3.v5.min.js"></script>
 </head>
 <body>
+  <h2>Quizes Score of the whole term (Crafty Penguin)</h2>
   <script type="text/javascript">
   // d= data[0].quizes
   var dataset=d3.json('classData.json');
@@ -34,6 +55,14 @@
       }
       return array
     }
+    var getDate=function(d){
+      var array=[]
+      for(var i=0;i<d.length;i++){
+        var grade=parseInt(d[i].day)
+        array.push(grade)
+      }
+      return array
+    }
 
     var personal=function(d,array){
       for(var i=0;i<d.length;i++){
@@ -50,7 +79,9 @@
     }
 
     dataset=getArray(d[1].quizes)
+    date=getDate(d[1].quizes)
     allDataset=getQuizeArray(d)
+
     svg=d3.select("body").append("svg")
     .attr('height', screen.height)
     .attr('width', screen.width)
@@ -70,6 +101,27 @@
       return h-yScale(d)
     })
     .attr('fill', '#8F995E')
+    .on("mouseover",function(d,i){
+      var xPosition = parseFloat(d3.select(this).attr("x")) + xScale.bandwidth() / 2;
+			var yPosition = parseFloat(d3.select(this).attr("height")) / 2;
+      d3.select("#tooltip")
+				.style("left", xPosition+ "px")
+				.style("top", yPosition+200+ "px")
+      d3.select("#tooltip").select("#score").text(d)
+      d3.select("#tooltip").select("#date").text(function(){
+        return date[i]
+      })
+      d3.select("#tooltip").classed("hidden", false)
+
+      d3.select(this)
+      .attr('fill', 'grey')
+
+    })
+    .on("mouseout",function(){
+      d3.select("#tooltip").classed("hidden", true)
+      d3.select(this)
+      .attr('fill', '#8F995E')
+    })
 
 
     // yaxis
@@ -88,12 +140,13 @@
         .attr('y1', function(){
           return yScale(personMean)
         })
-        .attr('x2', screen.width - margin.right/2)
+        .attr('x2', screen.width - margin.right)
         .attr('y2', function(){
           return yScale(personMean)
         })
         .attr('class', 'personMean')
-        .style('stroke', '#111');
+        .attr('stroke-width', 2)
+        .style('stroke', '#F29C3A');
 
     // class Average
     var classMean=Math.round(d3.mean(allDataset))
@@ -104,25 +157,26 @@
         .attr('y1', function(){
           return yScale(classMean)
         })
-        .attr('x2', screen.width - margin.right/2)
+        .attr('x2', screen.width - margin.right)
         .attr('y2', function(){
           return yScale(classMean)
         })
         .attr('class', 'classMean')
-        .style('stroke', '#111');
+        .attr('stroke-width', 2)
+        .style('stroke', '#C47171');
 
     // labels
     svg.append('text')
     .attr('x', screen.width - margin.right)
     .attr('y', function(){
-      return yScale(personMean)
+      return yScale(personMean)+5
     })
     .text('Personal Quizes Average')
 
     svg.append('text')
     .attr('x', screen.width - margin.right)
     .attr('y', function(){
-      return yScale(classMean)
+      return yScale(classMean)+5
     })
     .text('Class Quizes Average')
 
@@ -131,10 +185,6 @@
     .attr('y', margin.top-5)
     .text('Quize Score')
     .style("font-size",10)
-
-
-
-
   }
 
 
@@ -144,6 +194,20 @@
 
 
   </script>
+  <div id="tooltip" class="hidden">
+      <p>Day <span id="date">1</span></p>
+      <p>Score: <span id="score">9</span></p>
+    </div>
+  <div class="explain">
+    <ol>
+      <li>Using Crafty Penguin's quize score as dataset</li>
+      <li>Using "for" function to generate a quize array for this penguin</li>
+      <li>Using "for" function to generate a quize array for whole class</li>
+      <li>Using d3.mean() to calculate mean of two arrays</li>
+      <li>Create bar graph by appending rects and axis</li>
+      <li>Create average score lines by appending d3 lines</li>
+      <li>Hover each bar to see specific date and score</li>
+  </div>
 
 </body>
 
