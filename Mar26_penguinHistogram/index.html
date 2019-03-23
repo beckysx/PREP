@@ -1,1 +1,150 @@
+<html>
+<head>
+  <script src="https://d3js.org/d3.v5.min.js"></script>
+</head>
+<body>
+  <script type="text/javascript">
+  // d= data[0].quizes
+  var dataset=d3.json('classData.json');
 
+  var screen={width:830,height:400};
+  var tscreen={width:600,height:300};
+  var margin = {top: 50, right: 200, bottom: 30, left: 25};
+  var w = screen.width - margin.left - margin.right;
+  var h = screen.height - margin.top - margin.bottom;
+
+  //scale
+  var yScale=d3.scaleLinear()
+      .domain([0,10])
+      .range([h, margin.top]);
+
+  var xScale= d3.scaleBand()
+  .domain(d3.range(38))
+  .rangeRound([margin.left,screen.width - margin.right])
+  .paddingInner(0.05);
+
+
+  var drawChart=function(d){
+
+    var getArray=function(d){
+      var array=[]
+      for(var i=0;i<d.length;i++){
+        var grade=parseInt(d[i].grade)
+        array.push(grade)
+      }
+      return array
+    }
+
+    var personal=function(d,array){
+      for(var i=0;i<d.length;i++){
+        var grade=parseInt(d[i].grade)
+        array.push(grade)
+    }}
+    var getQuizeArray=function(d){
+      var array=[]
+      for(var i=0;i<d.length;i++){
+        var data=d[i].quizes
+        var personData=personal(data,array)
+      }
+      return array
+    }
+
+    dataset=getArray(d[1].quizes)
+    allDataset=getQuizeArray(d)
+    svg=d3.select("body").append("svg")
+    .attr('height', screen.height)
+    .attr('width', screen.width)
+
+    svg.selectAll("rect")
+    .data(dataset)
+    .enter()
+    .append('rect')
+    .attr('x', function(d,i){
+      return xScale(i)
+    })
+    .attr('y', function(d){
+      return yScale(d)
+    })
+    .attr('width', xScale.bandwidth)
+    .attr('height', function(d){
+      return h-yScale(d)
+    })
+    .attr('fill', '#8F995E')
+
+
+    // yaxis
+    var yAxis=d3.axisLeft(yScale)
+    .tickSize(2)
+    svg.append("g")
+    .attr('class', 'yAxis')
+    .call(yAxis)
+    .attr('transform', 'translate(' + (margin.left/1.5) + ',0)')
+
+    // personnal Average
+    var personMean=Math.round(d3.mean(dataset))
+
+    svg.append('line')
+        .attr('x1', margin.left/1.5)
+        .attr('y1', function(){
+          return yScale(personMean)
+        })
+        .attr('x2', screen.width - margin.right/2)
+        .attr('y2', function(){
+          return yScale(personMean)
+        })
+        .attr('class', 'personMean')
+        .style('stroke', '#111');
+
+    // class Average
+    var classMean=Math.round(d3.mean(allDataset))
+
+
+    svg.append('line')
+        .attr('x1', margin.left/1.5)
+        .attr('y1', function(){
+          return yScale(classMean)
+        })
+        .attr('x2', screen.width - margin.right/2)
+        .attr('y2', function(){
+          return yScale(classMean)
+        })
+        .attr('class', 'classMean')
+        .style('stroke', '#111');
+
+    // labels
+    svg.append('text')
+    .attr('x', screen.width - margin.right)
+    .attr('y', function(){
+      return yScale(personMean)
+    })
+    .text('Personal Quizes Average')
+
+    svg.append('text')
+    .attr('x', screen.width - margin.right)
+    .attr('y', function(){
+      return yScale(classMean)
+    })
+    .text('Class Quizes Average')
+
+    svg.append('text')
+    .attr('x', margin.left/1.5)
+    .attr('y', margin.top-5)
+    .text('Quize Score')
+    .style("font-size",10)
+
+
+
+
+  }
+
+
+  dataset.then(function(d){
+    drawChart(d)
+  })
+
+
+  </script>
+
+</body>
+
+</html>
