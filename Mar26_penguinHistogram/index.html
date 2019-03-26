@@ -28,9 +28,9 @@
   // d= data[0].quizes
   var dataset=d3.json('classData.json');
 
-  var screen={width:830,height:400};
+  var screen={width:930,height:400};
   var tscreen={width:600,height:300};
-  var margin = {top: 50, right: 200, bottom: 30, left: 25};
+  var margin = {top: 50, right: 300, bottom: 30, left: 25};
   var w = screen.width - margin.left - margin.right;
   var h = screen.height - margin.top - margin.bottom;
 
@@ -133,7 +133,7 @@
     .attr('transform', 'translate(' + (margin.left/1.5) + ',0)')
 
     // personnal Average
-    var personMean=Math.round(d3.mean(dataset))
+    var personMean=d3.mean(dataset).toFixed(2)
 
     svg.append('line')
         .attr('x1', margin.left/1.5)
@@ -149,7 +149,7 @@
         .style('stroke', '#F29C3A');
 
     // class Average
-    var classMean=Math.round(d3.mean(allDataset))
+    var classMean=d3.mean(allDataset).toFixed(2)
 
 
     svg.append('line')
@@ -171,14 +171,14 @@
     .attr('y', function(){
       return yScale(personMean)+5
     })
-    .text('Personal Quizes Average')
+    .text('Personal Quizes Average: '+personMean)
 
     svg.append('text')
     .attr('x', screen.width - margin.right)
     .attr('y', function(){
       return yScale(classMean)+5
     })
-    .text('Class Quizes Average')
+    .text('Class Quizes Average: '+classMean)
 
     svg.append('text')
     .attr('x', margin.left/1.5)
