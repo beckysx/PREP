@@ -1,1 +1,62 @@
+<html>
+<head>
+<style>
+@import url('https://fonts.googleapis.com/css?family=Montserrat|Raleway');
+body{
+  background-color: #CFD6CD
+}
 
+  h1{
+    font-family: 'Raleway', sans-serif;
+    margin-left: 250px
+
+  }
+  h2{
+    text-decoration: underline;
+  }
+  body{font-family: 'Montserrat', sans-serif}
+  .body{
+    margin-top: 100px;
+    margin-left: 150px;
+    width: 1000px;
+  }
+  ul,p{
+    line-height: 40px
+  }
+  span{
+    background-color: #B4C58B;
+  }
+  .description{
+    background-color: #DFE3DE;
+    padding: 20px;
+    border-radius: 40px;
+    margin-bottom: 40px;
+  }
+
+</style>
+</head>
+<body>
+  <div class="body">
+    <h1>Three Techniques</h1>
+    <div class="description">
+      <h2>Moving Average</h2>
+      <p>Using moving average the software with divide timeseries into small chunks of months each and calculate the average of each chunk, rather than the average of the entire period. At the end without moving average, the line will be pretty rough. With moving average, the line will be smoothed, which <span>removes other relevant features (seasonality and noise) and just show the trend.</span>
+</p>
+    </div>
+    <div class="description">
+      <h2>Sesonality Chart</h2>
+      <ul>
+        <li>Build a seasonality chart can help to <span>show consistent and periodic fluctuations</span> if the variable has. Seasonality is sometimes hard to detect based on raw data, but with seasonality chart, the software will analysis and compares data between each month or quarter in each year. Therefore the periodic fluctuations can be shown.</li>
+        <li>There is a seasonal subseries chart as well, which is often used in climate science. It gets data from different years and combined and put them into each month. So it can show how data change in years of specific month.</li>
+      </ul>
+
+    </div>
+    <div class="description">
+      <h2>Index Origin</h2>
+      <p>Index origin is used in zero-based index chart. The y-axis of this kind of chart shows percentage, and 0 is in the middle which is the index origin chosen by you. With different index origin the variable will show different pattern. In the book, the author first uses the average of the variable crossing multiple years as the index origin. And then uses a specific year data as the index origin. Because the difference of zero-base, the line also shows differently.</p>
+    </div>
+
+  </div>
+
+</body>
+</html>
