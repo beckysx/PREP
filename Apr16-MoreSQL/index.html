@@ -1,1 +1,184 @@
+<html>
+<head>
+<style>
+@import url('https://fonts.googleapis.com/css?family=Montserrat|Raleway');
+@import url('https://fonts.googleapis.com/css?family=Inconsolata');
+body{
+  background-color: #CFD6CD
+}
 
+  h1{
+    font-family: 'Raleway', sans-serif;
+    margin-left: 250px
+
+  }
+  h2{
+    text-decoration: underline;
+  }
+  body{font-family: 'Montserrat', sans-serif}
+  .body{
+    margin-top: 100px;
+    margin-left: 150px;
+    width: 1000px;
+  }
+  #normal{
+    background-color: #B4C58B;
+  }
+  #code{
+    font-family: 'Inconsolata';
+    color: blue;
+  }
+  .code{
+    font-family: 'Inconsolata';
+  }
+  .description{
+    background-color: #DFE3DE;
+    padding: 20px;
+    border-radius: 40px;
+    margin-bottom: 40px;
+  }
+  table{
+    border: solid;
+    border-color: black;
+  }
+  td{
+    width: 100px;
+    height: 30px;
+    text-align: center;
+    border: 1px solid black;
+  }
+  #two{
+    display: block;
+position: absolute;
+top: 485px;
+left: 600px;
+  }
+  .note{
+    width: 400px;
+position: absolute;
+top: 965px;
+left: 600px;
+  }
+
+
+</style>
+</head>
+<body>
+  <div class="body">
+    <h1>INNER JOIN</h1>
+    <div class="description">
+      <h2>Family Tree</h2>
+      <p><span id="code">INNER JOIN</span> is a useful clause to return a <span id="normal">result-set </span>with records that have matching values in both tables.</p>
+      <p>For two tables, there have to have a <span id="normal">common column</span> share same value in order to create a linked relationship between two tables. Based on this common column, <span id="code">INNER JOIN</span> can grab and only grab records that have same value to result-set.</p>
+  </div>
+  <div class="description">
+    <h2>EXAMPLE: </h2>
+    <div>
+      <h3>Table Name: one</h3>
+      <table>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>a</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>b</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>c</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>d</td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td>e</td>
+        </tr>
+        <tr>
+          <td>6</td>
+          <td>f</td>
+        </tr>
+      </table>
+
+    </div>
+    <div id="two">
+      <h3>Table Name: two</h3>
+      <table>
+        <tr>
+          <th>ID</th>
+          <th>Country</th>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>USA</td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td>China</td>
+        </tr>
+        <tr>
+          <td>6</td>
+          <td>Mexico</td>
+        </tr>
+        <tr>
+          <td>9</td>
+          <td>Japan</td>
+        </tr>
+        <tr>
+          <td>44</td>
+          <td>Australia</td>
+        </tr>
+      </table>
+
+    </div>
+    <div class="code">
+      <br><br>
+      <h3>SQL: </h3>
+      <p><span id="code">SELECT</span> one.Name, two.Country
+        <br>
+      <span id="code">FROM</span> one
+      <br>
+      <span id="code">INNER JOIN</span> two <span id="code">ON</span> one.ID=two.ID</p>
+    </div>
+    <div id="result">
+      <br><br>
+      <h3>Result-Set</h3>
+      <table>
+        <tr>
+          <th>Name</th>
+          <th>Country</th>
+        </tr>
+        <tr>
+          <td>d</td>
+          <td>USA</td>
+        </tr>
+        <tr>
+          <td>e</td>
+          <td>China</td>
+        </tr>
+        <tr>
+          <td>f</td>
+          <td>Mexico</td>
+        </tr>
+      </table>
+
+    </div>
+    <div class="note">
+      <h3>Note</h3>
+      <ul>
+        <li>The common colomn here is ID</li>
+        <li>In the example, INNER JOIN only grabed records that ID is 4,5,6</li>
+        <li>There is no a,b,c in the result set because ID 1,2,3 are not in table ‘two’</li>
+      </ul>
+    </div>
+  </div>
+
+
+</body>
+</html>
