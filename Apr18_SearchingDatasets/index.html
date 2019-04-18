@@ -1,1 +1,96 @@
 
+<html>
+<head>
+<style>
+@import url('https://fonts.googleapis.com/css?family=Montserrat|Raleway');
+body{
+  background-color: #CFD6CD
+}
+  button{
+    width: 200px;
+    height: 30px;
+    border-radius: 40px;
+    font-size: 15px;
+    font-family: monospace;
+    position: relative;
+    left: 600px;
+    top: -50px;
+    text-decoration: underline;
+  }
+  h1{
+    font-family: 'Raleway', sans-serif;
+    margin-left: 250px
+
+  }
+  h2{
+    text-decoration: underline;
+  }
+  body{font-family: 'Montserrat', sans-serif}
+  .body{
+    margin-top: 100px;
+    margin-left: 150px;
+    width: 1000px;
+  }
+  ul,p{
+    line-height: 40px
+  }
+  span{
+    background-color: #B4C58B;
+  }
+  .description{
+    background-color: #DFE3DE;
+    padding: 20px;
+    border-radius: 40px;
+    margin-bottom: 40px;
+  }
+  #ex1{
+    height: 300px;
+    position: relative;
+    left: 200px;
+  }
+  #ex2{
+    height: 300;
+    position: relative;
+    left: 100px;
+  }
+
+</style>
+</head>
+<body>
+  <div class="body">
+    <h1>Movie Dataset</h1>
+    <div class="description">
+      <h2><a href="http://awardsdatabase.oscars.org/Search/GetResults?query=%7B%22IsWinner%22:true,%22AwardCategory%22:[%2219%22],%22Sort%22:%223-Award%20Category-Chron%22,%22Search%22:%22Basic%22%7D">Dataset 1</a></h2>
+      <ul>
+        <li>This dataset is from the Oscar.com which is very professional, accurate</li>
+        <li>By searching for Best Picture Award I get this dataset</li>
+        <li>I can see the Best Picture Award winner from 1927 to 2018</li>
+        <li>By click each movie I can get more information including
+          <ol>
+            <li>Nominations for different awards</li>
+            <li>Main Charactors</li>
+            <li>What are other movies have these actors join</li>
+            <li>What awards have these actors gotten</li>
+          </ol>
+      </li>
+      </ul>
+    </div>
+    <div class="description">
+      <h2> <a href="https://data.world/crowdflower/academy-awards-demographics/workspace/query?queryid=sample-0">Dataset 2</a></h2>
+      <ul>
+        <li>This dataset is very convinient to get what I want since it can use SQL</li>
+        <li>More sepecific information about actors. Including
+          <ol>
+            <li>Race</li>
+            <li>Religion</li>
+            <li>Date of Birth</li>
+            <li>Awards</li>
+          </ol>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+
+</body>
+</html>
